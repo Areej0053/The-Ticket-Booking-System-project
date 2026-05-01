@@ -20,7 +20,7 @@ public class BookingManagerTest {
         bookingManager = new BookingManager(paymentGateway, notificationService, eventRepository);
     }
     
-    // US-01: Happy Path (2 points)
+    
     @Test
     void testHappyPath_ValidInput_PaymentSucceeds_NotSoldOut() {
         when(eventRepository.isSoldOut("event123")).thenReturn(false);
@@ -35,7 +35,6 @@ public class BookingManagerTest {
         verify(notificationService, times(1)).sendConfirmation("user@example.com", "event123", 2);
     }
     
-    // US-02: Invalid Paths (1 point)
     @Test
     void testInvalidInput_NothingCalled() {
         String result = bookingManager.processBooking("", "user@example.com", 2);
@@ -47,7 +46,6 @@ public class BookingManagerTest {
         verify(eventRepository, never()).isSoldOut(anyString());
     }
     
-    // US-03: Sold Out Path (1 point)
     @Test
     void testEventSoldOut_OnlyIsSoldOutCalled() {
         when(eventRepository.isSoldOut("event123")).thenReturn(true);
