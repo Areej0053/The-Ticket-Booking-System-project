@@ -23,7 +23,6 @@ public class BookingManager {
         if (eventRepository.isSoldOut(eventId)) {
             return "Event sold out";
         }
-
     
         String transactionId = paymentGateway.processPayment(customerEmail, tickets * 100);
 
