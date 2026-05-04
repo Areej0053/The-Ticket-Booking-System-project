@@ -1,3 +1,5 @@
+package com.example;
+
 public class BookingManager {
 
     private final IPaymentGateway paymentGateway;
